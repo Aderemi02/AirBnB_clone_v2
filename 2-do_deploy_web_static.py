@@ -16,16 +16,16 @@ def do_deploy(archive_path):
         return False
     try:
         put(archive_path, '/tmp/')
-        arcFilename = archive_path.split("/")[-1]
-        arcFilename_no_ext = arcFilename.split(".")[0]
+        arcFile = archive_path.split("/")[-1]
+        arcFile_no_ext = arcFile.split(".")[0]
         loc = "/data/web_static/releases/"
-        run('mkdir -p {}{}/'.format(loc, arcFilename_no_ext))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(arcFilename, loc, arcFilename_no_ext))
-        run('rm /tmp/{}'.format(arcFilename))
-        run('mv {0}{1}/web_static/* {0}{1}/'.format(arcFilename, arcFilename_no_ext))
-        run('rm -rf {}{}/web_static'.format(arcFilename, arcFilename_no_ext))
+        run('mkdir -p {}{}/'.format(loc, arcFile_no_ext))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(arcFile, loc, arcFile_no_ext))
+        run('rm /tmp/{}'.format(arcFile))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(arcFile, arcFile_no_ext))
+        run('rm -rf {}{}/web_static'.format(arcFile, arcFile_no_ext))
         run('rm -rf /data/web_static/current')
-        run('ln -s {}{}/ /data/web_static/current'.format(loc, arcFilename_n_ext))
+        run('ln -s {}{}/ /data/web_static/current'.format(loc, arcFile_n_ext))
         return True
-    except:
+    except Exception:
         return False
