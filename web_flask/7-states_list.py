@@ -16,7 +16,7 @@ app = Flask(__name__)
 def states_list():
     """displays state lists with id"""
     states = sorted(list(storage.all("State").values()), key=lambda x: x.name)
-    return render_template("7-states_list.html", state=state)
+    return render_template("7-states_list.html", states=states)
 
 
 @app.teardown_appcontext
