@@ -5,7 +5,7 @@ starting flask web app
 from flask import Flask
 from flask import render_template
 from models import storage
-from models.state import state
+from models.state import State
 
 
 app = Flask(__name__)
@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route("/states_list", strict_slashes=False)
 def states_list():
     """displays state lists with id"""
-    state = sorted(list(storage.all("State").values()), key=lambda y: y.name)
+    states = sorted(list(storage.all("State").values()), key=lambda x: x.name)
     return render_template("7-states_list.html", state=state)
 
 
